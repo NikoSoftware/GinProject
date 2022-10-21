@@ -21,8 +21,9 @@ func (u UserController) GetUserInfo(c *gin.Context) {
 }
 
 func (u UserController) GetAllStudent(c *gin.Context) {
-	var s model.Student
-	db.Db.First(&s)
+	var s []model.Student
+
+	db.Db.Find(&s)
 
 	c.JSON(http.StatusOK, s)
 
