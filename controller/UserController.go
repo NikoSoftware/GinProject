@@ -28,3 +28,19 @@ func (u UserController) GetAllStudent(c *gin.Context) {
 	c.JSON(http.StatusOK, s)
 
 }
+
+func (u UserController) GetCourse(c *gin.Context) {
+	var course []model.Course
+
+	db.Db.Debug().Model(&model.Course{}).Preload("Teacher").Find(&course)
+	c.JSON(http.StatusOK, course)
+
+}
+
+func (u UserController) GetStudents(c *gin.Context) {
+	var teachers []model.Teacher
+
+	db.Db.Find(&teachers)
+	c.JSON(http.StatusOK, teachers)
+
+}

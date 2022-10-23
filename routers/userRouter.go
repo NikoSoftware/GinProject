@@ -2,7 +2,6 @@ package routers
 
 import (
 	"GinProject/controller"
-	"GinProject/filter"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,7 +9,12 @@ func UserRoutersInit(r *gin.Engine) {
 
 	router := r.Group("/user")
 
-	router.GET("/userInfo", filter.TokenFilter, controller.UserController{}.GetUserInfo)
+	router.GET("/userInfo", controller.UserController{}.GetUserInfo)
 
-	router.GET("/users", filter.TokenFilter, controller.UserController{}.GetAllStudent)
+	router.GET("/users", controller.UserController{}.GetAllStudent)
+
+	router.GET("/course", controller.UserController{}.GetCourse)
+
+	router.GET("/teacher", controller.UserController{}.GetStudents)
+
 }

@@ -1,17 +1,13 @@
 package model
 
-import (
-	"time"
-)
-
 type Student struct {
 	//gorm.Model
-	SId   string    `gorm:"column:SId"`
-	Sname string    `gorm:"column:Sname"`
-	Sage  time.Time `gorm:"column:Sage"`
-	Ssex  string    `gorm:"column:Ssex"`
+	SNo   string `gorm:"column:s_no"`
+	SName string `gorm:"column:s_name"`
+	SAge  int    `gorm:"column:s_age"`
+	SSex  string `gorm:"column:s_sex"`
 }
 
 func (Student) TableName() string {
-	return "Student"
+	return "student"
 }
