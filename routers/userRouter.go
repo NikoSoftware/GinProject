@@ -17,4 +17,6 @@ func UserRoutersInit(r *gin.Engine) {
 
 	router.GET("/teacher", controller.UserController{}.GetStudents)
 
+	router.GET("/sc", controller.UserController{}.GetStudentCourse)
+
 }

@@ -44,3 +44,12 @@ func (u UserController) GetStudents(c *gin.Context) {
 	c.JSON(http.StatusOK, teachers)
 
 }
+
+func (u UserController) GetStudentCourse(c *gin.Context) {
+	var students []model.Student
+
+	db.Db.Debug().Model(&model.Student{}).Preload("Sc").Preload("Sc.Course").Preload("Sc.Course.Teacher").Find(&students)
+
+	c.JSON(http.StatusOK, students)
+
+}
