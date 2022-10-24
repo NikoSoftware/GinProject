@@ -19,4 +19,6 @@ func UserRoutersInit(r *gin.Engine) {
 
 	router.GET("/sc", controller.UserController{}.GetStudentCourse)
 
+	router.GET("/redis", controller.UserController{}.GetRedis)
+
 }
