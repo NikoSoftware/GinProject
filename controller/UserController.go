@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	_ "github.com/gin-gonic/gin/binding"
+	_ "gopkg.in/go-playground/validator.v8"
 	"net/http"
 	"time"
 )
@@ -41,10 +43,24 @@ func (u UserController) GetCourse(c *gin.Context) {
 }
 
 func (u UserController) GetStudents(c *gin.Context) {
-	var teachers []model.Teacher
 
-	db.Db.Find(&teachers)
-	c.JSON(http.StatusOK, teachers)
+	var student model.Student
+
+	err := c.ShouldBind(&student)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	j, _ := json.Marshal(student)
+
+	fmt.Println(string(j))
+
+	var students []model.Student
+
+	db.Db.Find(&students)
+
+	c.JSON(http.StatusOK, students)
 
 }
 
